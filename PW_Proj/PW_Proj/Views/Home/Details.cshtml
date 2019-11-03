@@ -1,0 +1,31 @@
+﻿@model HomeDetailsViewModel
+
+@{ 
+    Layout = "_Layout";
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    ViewBag.Title = "User Details";
+    var photoPath = "~/images/" + (Model.User.PhotoPath ?? "userImage.png");
+}
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card bg-dark" >
+            <div class="card-header text-center text-white">
+                <h1>@Model.User.UserName</h1>
+            </div>
+
+            <div class="card-body text-center text-white">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true"  />
+                
+                <h4>User ID: @Model.User.Id</h4>
+                <h4>Email: @Model.User.Email</h4>
+                <h4>Gender: @Model.User.Gender</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-action="edit" asp-controller="home" asp-route-id="@Model.User.Id" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

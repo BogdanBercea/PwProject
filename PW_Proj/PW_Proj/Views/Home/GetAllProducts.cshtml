@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Products List";
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/css/site.css" rel="stylesheet" />
+}
+<div class=" card-deck">
+    @foreach (var product in Model)
+    {
+        var photoPath = "~/images/" + (product.PhotoPath ?? "userImage.png");
+
+        <div class="card m-3 " style="min-width: 18rem; max-width:30.5%;">
+            <div class="card-header text-center text-black-50">
+                <h3>@product.ProductName</h3>
+            </div>
+            <img class="card-img-top imageThumbnail" src="@photoPath" height="350px" width="146px" asp-append-version="true" />
+            <div class="card-footer text-center text-black-50">
+                <a asp-controller="home" asp-action="productdetails" asp-route-id="@product.Id"
+                   class="btn btn-primary m-1">View</a>
+            </div>
+        </div>
+    }
+    </div>
